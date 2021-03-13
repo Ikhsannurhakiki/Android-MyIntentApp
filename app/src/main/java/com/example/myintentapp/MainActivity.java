@@ -18,21 +18,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMoveActivity.setOnClickListener(this);
         Button btnMoveWithDataActivity = findViewById(R.id.btn_move_activity_data);
         btnMoveWithDataActivity.setOnClickListener(this);
+        Button btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
+        btnMoveWithObject.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_move_activity:
                 Intent moveIntent = new Intent(this, MoveActivity.class);
                 startActivity(moveIntent);
+                break;
             case R.id.btn_move_activity_data:
                 Intent moveWithDataIntent = new Intent(this, MoveWithDataActivity.class);
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME,"Ikhsan Nur Hakiki");
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Ikhsan Nur Hakiki");
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 22);
                 startActivity(moveWithDataIntent);
                 break;
+            case R.id.btn_move_activity_object:
+                Person person = new Person();
+                person.setName("Ikhsan Nur Hakiki");
+                person.setAge(22);
+                person.setEmail("nurhakikiikhsan@gmail.com");
+                person.setCity("Rengat");
+                Intent moveWithObjectIntent = new Intent(this, MoveWithObjectActivity.class);
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person);
+                startActivity(moveWithObjectIntent);
+                break;
+
         }
     }
 }
